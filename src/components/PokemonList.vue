@@ -228,6 +228,30 @@ export default {
 		}
 	}
 
+    ///////////////////////////
+	/////   MediaQueries //////
+	///////////////////////////
+	@media screen and (max-width: 1100px) {
+        .pokemon-item{
+			max-width: 100%;
+			margin: 20px 0;
+			padding: 30px;
+        }
+        .pagination {
+            overflow: scroll;
+        }
+    }
+    
+    @media screen and (max-width: 500px) {
+		.pokemon-item{
+			padding: 15px;
+        }
+        .pagination {
+            flex-direction: column;
+        }
+    }
+        
+
 	///////////////////////////
 	/////   Keyframes   ///////
 	///////////////////////////

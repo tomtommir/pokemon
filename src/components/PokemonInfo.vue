@@ -1,5 +1,6 @@
 <template>
 	<section 
+		id="pokemon-info"
 		class="pokemon-item" 
 		:class="{active: isActive}"
 		>
@@ -108,19 +109,17 @@ export default {
 
 <style scoped lang="scss">
 	.pokemon-item{
-		// max-width: 75%;
-        // margin: 50px auto;
 		position: relative;
         width: 100%;
 		padding: 50px;
-		&.active{
-			display: flex;
-		}
-		display: none;
 		background: white;
 		border-radius: 20px;
 		flex-direction: column;
 		row-gap: 20px;
+		display: none;
+		&.active{
+			display: flex;
+		}
 		.close-info{
 			position: absolute;
 			top: 10px;

@@ -32,6 +32,7 @@
 <script>
 import PokemonInfo from "./components/PokemonInfo"
 import PokemonList from "./components/PokemonList"
+import $ from 'jquery'
 
 export default {
 	name: "App",
@@ -56,6 +57,7 @@ export default {
 				//On est sur un click sur la liste
 				//MAJ de la pokemonInfo
 				this.clickedList = true
+				$('html, body').animate({scrollTop:$('#pokemon-info').position().top}, 'slow');
 			}else if(type === 'search'){
 				//On est sur une recherche sur la liste
 				//MAJ de la pokemonList
@@ -156,6 +158,11 @@ export default {
 		}
 		.nav{
 			column-gap: 20px;
+		}
+		.container-list{
+			flex-direction: column;
+			display: flex;
+			row-gap: 20px;
 		}
 	}
 
