@@ -23,6 +23,7 @@
 			<PokemonInfo
 				:name="namePokemon"
 				:url="urlPokemon"
+				:clicked="clickedList"
 			/>
 		</div>
 	</div>
@@ -43,20 +44,29 @@ export default {
 			namePokemon: "Pikachu",
 			urlPokemon: "https://pokeapi.co/api/v2/pokemon/pikachu",
 			search: "",
-			searchList: ""
+			searchList: "",
+			clickedList: false
 		}
 	},
 	methods:{
-		majData(name,url){
+		majData(name,url,type){
 			this.namePokemon = name;
 			this.urlPokemon = url;
-			this.searchList = this.search
+			if(type === 'click'){
+				//On est sur un click sur la liste
+				//MAJ de la pokemonInfo
+				this.clickedList = true
+			}else if(type === 'search'){
+				//On est sur une recherche sur la liste
+				//MAJ de la pokemonList
+				this.searchList = this.search
+			}
 		},
 		searchPokemon(){
 			if(this.search == ""){
 				return false
 			}else{
-				this.majData(this.search,"https://pokeapi.co/api/v2/pokemon/"+this.search)
+				this.majData(this.search,"https://pokeapi.co/api/v2/pokemon/"+this.search,'search')
 			}
 		},
 		searchReset(){

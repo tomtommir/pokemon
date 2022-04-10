@@ -1,6 +1,9 @@
 <template>
-	<section class="pokemon-item">
-		<div v-if="loading" class="loading">
+	<section 
+		class="pokemon-item" 
+		:class="{active: isActive}"
+		>
+		<div v-if="loading" class="loading" >
             <img src="/images/pokeball.svg" class='loader'>
         </div>
         <div v-else>
@@ -8,6 +11,9 @@
 				Problem while searching, please search for another pokemon
 			</div>
 			<div v-else>
+				<i 
+					class="ri-close-line close-info" 
+					@click="close()"></i>
 				<div class="pokemon-img">
 					<img class="pokemon-item__image" :src="img" :alt="name" />
 				</div>
@@ -44,10 +50,17 @@ import axios from "axios"
 
 export default {
 	name: "PokemonInfo",
-	props: ["name", "url"],
+	props: ["name", "url", "clicked"],
 	watch: {
 		url: function(newUrl) {
+			//Si l'on vient mettre une nouvelle URL alors
+			//on reload la pokemon Info
 			this.getPokemonInfo(newUrl.toLowerCase())
+        },
+		clicked: function() {
+			//Si l'on vient mettre à true la variable clicked
+			//on affiche la pokemon info
+			this.open()
         }
 	},
 	data() {
@@ -57,7 +70,8 @@ export default {
 			moves:[],
 			img: "",
 			loading: false,
-			error: false
+			error: false,
+			isActive: true
 		}
 	},
 	methods: {
@@ -77,7 +91,12 @@ export default {
 				})
 				.finally(() => (this.loading = false))
 			},500);
-			
+		},
+		close(){
+			this.isActive = false
+		},
+		open(){
+			this.isActive = true
 		}
 	},
 	mounted () {
@@ -91,13 +110,24 @@ export default {
 	.pokemon-item{
 		// max-width: 75%;
         // margin: 50px auto;
+		position: relative;
         width: 100%;
+		padding: 50px;
+		&.active{
+			display: flex;
+		}
+		display: none;
 		background: white;
 		border-radius: 20px;
-		padding: 50px;
-		display: flex;
 		flex-direction: column;
 		row-gap: 20px;
+		.close-info{
+			position: absolute;
+			top: 10px;
+			right: 20px;
+			font-size: 25px;
+			cursor: pointer;
+		}
 		.pokemon-img{
 			img{
 				width: 200px;
@@ -110,6 +140,7 @@ export default {
 			color: black;
 			margin: 0;
 			text-transform: capitalize;
+			margin-bottom: 20px;
 		}
 		.column_container{
 			display: flex;

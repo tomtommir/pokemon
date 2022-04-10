@@ -124,7 +124,7 @@ export default {
 			},500)
 		},
         getInfoPokemon(url,name){
-            this.$parent.majData(name,url)
+            this.$parent.majData(name,url,'click')
         },
         getPokemonListSearch(search){
             const self = this
@@ -173,6 +173,7 @@ export default {
         display: flex;
         flex-direction: column;
         row-gap: 20px;
+        transition: all 400ms ease-in-out;
         ul.pokemon-list{
             list-style: none;
             margin: 0;
