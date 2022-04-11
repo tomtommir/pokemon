@@ -1,5 +1,5 @@
 <template>
-	<div id="app" class="app">
+	<div class="pokemon-container">
 		<img class="logo-pokemon" alt="logo" src="/images/pokemon.png">
 		<div class="search-container">
 			<i 
@@ -88,19 +88,17 @@ export default {
 </script>
 
 <style lang="scss">
-	#app{
-		text-align: center;
-		*{
-			box-sizing: border-box;
-		}
-	}
-	.app {
+	.pokemon-container {
 		font-family: "Avenir", Helvetica, Arial, sans-serif;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		text-align: center;
 		color: #2c3e50;
 		margin: 50px 20px;
+		text-align: center;
+		*{
+			box-sizing: border-box;
+		}
 	}
 	.logo-pokemon{
 		margin-bottom: 50px;
